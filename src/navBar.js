@@ -1,22 +1,40 @@
+import { initHomeContent } from "./home"
+import { initMenuContent } from "./menu"
+import { initContactContent } from "./contact"
+
+const content = document.querySelector("#content");
+
 function initNavBar() {
-  const content = document.createElement('div');
+  const navContainer = document.createElement('div');
 
-  const home = document.createElement('a');
+  const home = document.createElement('button');
   home.innerText = "Home";
-  home.href = './index.html';
-  content.appendChild(home);
+  home.onclick = () => {
+    content.innerHTML = "";
+    content.appendChild(initNavBar());
+    content.appendChild(initHomeContent());
+  }
+  navContainer.appendChild(home);
 
-  const menu = document.createElement('a');
+  const menu = document.createElement('button');
   menu.innerText = "Menu";
-  menu.href = './menu.html';
-  content.appendChild(menu);
+  menu.onclick = () => {
+    content.innerHTML = "";
+    content.appendChild(initNavBar());
+    content.appendChild(initMenuContent());
+  }
+  navContainer.appendChild(menu);
 
-  const contact = document.createElement('a');
+  const contact = document.createElement('button');
   contact.innerText = "Contact";
-  contact.href = './contact.html';
-  content.appendChild(contact);
+  contact.onclick = () => {
+    content.innerHTML = "";
+    content.appendChild(initNavBar());
+    content.appendChild(initContactContent());
+  }
+  navContainer.appendChild(contact);
 
-  return content;
+  return navContainer;
 }
 
 export { initNavBar }
